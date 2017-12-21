@@ -1,6 +1,9 @@
-import { createStore, compose, combineReducers } from 'redux';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import reducers from './reducers';
-import { routerReducer } from 'react-router-redux'
+import {createLogger} from 'redux-logger';
+import { routerReducer } from 'react-router-redux';
+
+const logger = createLogger({});
 
 const configureStore = (preloadedState) => {
   const enhancers = [];
@@ -21,7 +24,8 @@ const configureStore = (preloadedState) => {
       ...compose(
         ...enhancers
       )
-    })
+    }),
+    applyMiddleware(logger)
   );
 };
 
