@@ -14,7 +14,7 @@ const
     Table = ({
         actionsColumns, columns, columnSettings, data, module, sorting, toggleSorting, entityActions
     }) => <x-table class={classNames(styles.mainTable, styles.className)}>
-        <table>
+        <table className="table table-striped">
             <tbody>
                 <tr>
                     {extendColumns(columns, actionsColumns).map((column, i) =>
