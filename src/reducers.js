@@ -1,5 +1,6 @@
-import { compose, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import merchantsRest from './Merchants/rest';
+import tableReducer from './generic/Table/reducers';
 import { routerReducer } from 'react-router-redux';
 
 export default preloadedState => {
@@ -20,5 +21,6 @@ const enhancers = [];
     }),
 
     routing: routerReducer,
+    table: tableReducer,
   })
 }
