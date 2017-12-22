@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
+import Merchants from './Merchants';
 import configureStore from './configureStore';
 import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
@@ -16,7 +17,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path="/" component={App}/>
+        <Route exact path="/" component={Merchants}/>
       </div>
     </ConnectedRouter>
   </Provider>,
