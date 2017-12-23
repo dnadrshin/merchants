@@ -3,7 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import {compose, lifecycle, withHandlers} from 'recompose';
+import {compose, withHandlers} from 'recompose';
 import Row from './Row';
 import actions from './actions';
 import styles from './assets/component.css';
