@@ -2,10 +2,11 @@
 import React, {Fragment} from 'react';
 import rest from './rest';
 import {connect} from 'react-redux';
-import {compose, lifecycle} from 'recompose';
+import {compose, lifecycle, withState} from 'recompose';
 import columns from './columns';
 import Table from '../generic/Table';
 import Paginator from '../generic/Paginator';
+import Modal from '../generic/Modal'
 
 type Bid = {
   id: string,
@@ -31,6 +32,8 @@ const
 
 const
   Merchants = (props: {
+    setShowEditModal: (boolean)=>{},
+    showEditModal: boolean,
     merchants: Array<Merchant>,
     sync: ()=>{},
   }) => <Fragment>
@@ -40,12 +43,17 @@ const
       module="records"
 
       actionsColumns={[
-        {type: 'edit', title: 'Edit', name: 'mode edit', isServiceField: true, action: () => {}}, 
+        {type: 'edit', title: 'Edit', name: 'mode edit', isServiceField: true, action: () => () => props.setShowEditModal(true)}, 
         {type: 'remove', title: 'Delete', name: 'delete', isServiceField: true, action: () => {}},
       ]}
     />
 
     <Paginator pagesCount={4} limit={limit} sync={props.sync}/>
+
+    <Modal
+      show={props.showEditModal}
+      closeModal={()=>props.setShowEditModal(false)}
+    />
   </Fragment>;
 
 export default compose(
@@ -60,6 +68,8 @@ export default compose(
       sync: (data, cb) => dispatch(rest.actions.merchants.sync({limit: data.limit, start: data.start})),
     })
   ),
+
+  withState('showEditModal', 'setShowEditModal', false),
 
   lifecycle({
     componentDidMount() {
