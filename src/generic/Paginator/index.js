@@ -10,7 +10,7 @@ export default (props: {
     start: number,
   })=>{},
 }) => <nav aria-label="Page navigation">
-	<ul class="pagination">
+	<ul className="pagination">
     {false && <li>
         <a href="/" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
@@ -18,7 +18,7 @@ export default (props: {
     </li>}
 
     {_.range(1, props.pagesCount+1).map(num => <li key={`pagination-page-${num}`}>
-      <a href="/" onClick={() => props.sync({limit: props.limit, start: (num - 1)*props.limit + 1})}>{num}</a>
+      <a href="" onClick={e => {e.preventDefault(); props.sync({limit: props.limit, start: (num - 1)*props.limit + 1})}}>{num}</a>
     </li>)}
 
     {false && <li>
