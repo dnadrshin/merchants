@@ -86,4 +86,207 @@ module.exports = [
             },
         ]
     },
+    {
+        id: '4',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
+    {
+        id: '5',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
+    {
+        id: '6',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
+    {
+        id: '7',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
+    {
+        id: '8',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
+    {
+        id: '9',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
+    {
+        id: '10',
+        firstname: 'sdfdsf',
+        lastname: 'sdfsdf',
+        avatarUrl: 'http://sdsfd.com',
+        email: 'sdfsf@sdsdf.com',
+        phone: '34534345',
+        hasPremium: true,
+        bids: [
+            {
+                id: '6',
+                carTitle: 'BMW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '7',
+                carTitle: 'VW',
+                amount: 10,
+                created: 'somedate'
+            },
+            {
+                id: '8',
+                carTitle: 'Mers',
+                amount: 10,
+                created: 'somedate'
+            },
+        ]
+    },
 ]
