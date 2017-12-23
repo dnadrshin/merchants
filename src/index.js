@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
-import App from './App';
 import Merchants from './Merchants';
 import configureStore from './configureStore';
 import createHistory from 'history/createBrowserHistory'
@@ -16,11 +15,12 @@ const history = createHistory();
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <Fragment>
         <Route exact path="/" component={Merchants}/>
-      </div>
+      </Fragment>
     </ConnectedRouter>
   </Provider>,
+
   document.getElementById('root')
 );
 
