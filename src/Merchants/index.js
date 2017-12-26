@@ -1,4 +1,5 @@
 // @flow
+import _ from 'lodash';
 import React, {Fragment} from 'react';
 import rest from './rest';
 import {connect} from 'react-redux';
@@ -6,7 +7,7 @@ import {compose, lifecycle, withState} from 'recompose';
 import columns from './columns';
 import Table from '../generic/Table';
 import Paginator from '../generic/Paginator';
-import Modal from '../generic/Modal'
+import EditModal from '../generic/EditModal'
 
 type Bid = {
   id: string,
@@ -43,14 +44,15 @@ const
       module="records"
 
       actionsColumns={[
-        {type: 'edit', title: 'Edit', name: 'mode edit', isServiceField: true, action: () => () => props.setShowEditModal(true)}, 
+        {type: 'edit', title: 'Edit', name: 'mode edit', isServiceField: true, action: id => () => {props.setEditMerchant(id); props.setShowEditModal(true)}}, 
         {type: 'remove', title: 'Delete', name: 'delete', isServiceField: true, action: () => {}},
       ]}
     />
 
     <Paginator pagesCount={4} limit={limit} sync={props.sync}/>
 
-    <Modal
+    <EditModal
+      data={_.find(props.merchants, {id: props.editMerchant})}
       show={props.showEditModal}
       closeModal={()=>props.setShowEditModal(false)}
     />
@@ -70,6 +72,7 @@ export default compose(
   ),
 
   withState('showEditModal', 'setShowEditModal', false),
+  withState('editMerchant', 'setEditMerchant', ''),
 
   lifecycle({
     componentDidMount() {
