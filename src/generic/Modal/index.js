@@ -20,7 +20,7 @@ export default (props: {
               </div>
               <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal" onClick={props.closeModal}>Close</button>
-                  <button type="button" className="btn btn-primary">Save changes</button>
+                  <button type="button" className="btn btn-primary" onClick={props.save}>Save changes</button>
               </div>
             </div>
         </div>

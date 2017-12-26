@@ -4,10 +4,19 @@ import Modal from '../Modal';
 import InputField from '../Form/InputField';
 import CheckBoxField from '../Form/CheckBoxField';
 import Form from '../Form';
+import {compose, withHandlers} from 'recompose';
+import {connect} from 'react-redux';
+import rest from '../../Merchants/rest';
 
 const
-  EditModal = props => <Modal
+  EditModal = (props: {
+    closeModal: ()=>{},
+    save: ()=>{},
+    data: {},
+    show: boolean,
+  }) => <Modal
     closeModal={props.closeModal}
+    save={props.save}
     header={`Edit Merchant #${_.get(props.data, 'id')}`}
     show={props.show}
   >
@@ -21,4 +30,18 @@ const
     </Form>
   </Modal>
 
-export default EditModal;
+export default compose(
+  connect(
+    state => ({
+      merchant: _.get(state.form, 'editModal', {})
+    }),
+
+    ({
+      put: rest.actions.merchant.put
+    })
+  ),
+
+  withHandlers({
+    save: props => () => {props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}); props.closeModal()}
+  }),
+)(EditModal);
