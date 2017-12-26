@@ -1,0 +1,357 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component changed field value changing store 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(lifecycle(Form))
+    data={
+      Object {
+        "avatarUrl": "http://sdsfd.com",
+        "bids": Array [
+          Object {
+            "amount": 10,
+            "carTitle": "BMW",
+            "created": "somedate",
+            "id": "1",
+          },
+          Object {
+            "amount": 10,
+            "carTitle": "VW",
+            "created": "somedate",
+            "id": "2",
+          },
+          Object {
+            "amount": 10,
+            "carTitle": "Mers",
+            "created": "somedate",
+            "id": "3",
+          },
+        ],
+        "email": "sdfsf@sdsdf.com",
+        "firstname": "sdfdsf",
+        "hasPremium": true,
+        "id": "1",
+        "lastname": "sdfsdf",
+        "phone": "34534345",
+      }
+    }
+    model="editModal"
+  >
+    <lifecycle(Form)
+      createForm={[Function]}
+      data={
+        Object {
+          "avatarUrl": "http://sdsfd.com",
+          "bids": Array [
+            Object {
+              "amount": 10,
+              "carTitle": "BMW",
+              "created": "somedate",
+              "id": "1",
+            },
+            Object {
+              "amount": 10,
+              "carTitle": "VW",
+              "created": "somedate",
+              "id": "2",
+            },
+            Object {
+              "amount": 10,
+              "carTitle": "Mers",
+              "created": "somedate",
+              "id": "3",
+            },
+          ],
+          "email": "sdfsf@sdsdf.com",
+          "firstname": "sdfdsf",
+          "hasPremium": true,
+          "id": "1",
+          "lastname": "sdfsdf",
+          "phone": "34534345",
+        }
+      }
+      model="editModal"
+    >
+      <Form
+        createForm={[Function]}
+        data={
+          Object {
+            "avatarUrl": "http://sdsfd.com",
+            "bids": Array [
+              Object {
+                "amount": 10,
+                "carTitle": "BMW",
+                "created": "somedate",
+                "id": "1",
+              },
+              Object {
+                "amount": 10,
+                "carTitle": "VW",
+                "created": "somedate",
+                "id": "2",
+              },
+              Object {
+                "amount": 10,
+                "carTitle": "Mers",
+                "created": "somedate",
+                "id": "3",
+              },
+            ],
+            "email": "sdfsf@sdsdf.com",
+            "firstname": "sdfdsf",
+            "hasPremium": true,
+            "id": "1",
+            "lastname": "sdfsdf",
+            "phone": "34534345",
+          }
+        }
+        model="editModal"
+      >
+        <form>
+          <Connect(InputField)
+            lable="Phone"
+            model="editModal.phone"
+            name="phone"
+          >
+            <InputField
+              changeField={[Function]}
+              lable="Phone"
+              model="editModal.phone"
+              name="phone"
+              value="+1111122222"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="exampleInputEmail1"
+                >
+                  Phone
+                </label>
+                <input
+                  className="form-control"
+                  name="phone"
+                  onChange={[Function]}
+                  value="+1111122222"
+                />
+              </div>
+            </InputField>
+          </Connect(InputField)>
+          <Connect(CheckBoxField)
+            lable="Premium"
+            model="editModal.hasPremium"
+          >
+            <CheckBoxField
+              changeField={[Function]}
+              checked={false}
+              lable="Premium"
+              model="editModal.hasPremium"
+            >
+              <div
+                className="checkbox"
+              >
+                <label>
+                  <input
+                    checked={false}
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                   
+                  Premium
+                </label>
+              </div>
+            </CheckBoxField>
+          </Connect(CheckBoxField)>
+        </form>
+      </Form>
+    </lifecycle(Form)>
+  </Connect(lifecycle(Form))>
+</Provider>
+`;
+
+exports[`Form component render form with two Field with proper values 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(lifecycle(Form))
+    data={
+      Object {
+        "avatarUrl": "http://sdsfd.com",
+        "bids": Array [
+          Object {
+            "amount": 10,
+            "carTitle": "BMW",
+            "created": "somedate",
+            "id": "1",
+          },
+          Object {
+            "amount": 10,
+            "carTitle": "VW",
+            "created": "somedate",
+            "id": "2",
+          },
+          Object {
+            "amount": 10,
+            "carTitle": "Mers",
+            "created": "somedate",
+            "id": "3",
+          },
+        ],
+        "email": "sdfsf@sdsdf.com",
+        "firstname": "sdfdsf",
+        "hasPremium": true,
+        "id": "1",
+        "lastname": "sdfsdf",
+        "phone": "34534345",
+      }
+    }
+    model="editModal"
+  >
+    <lifecycle(Form)
+      createForm={[Function]}
+      data={
+        Object {
+          "avatarUrl": "http://sdsfd.com",
+          "bids": Array [
+            Object {
+              "amount": 10,
+              "carTitle": "BMW",
+              "created": "somedate",
+              "id": "1",
+            },
+            Object {
+              "amount": 10,
+              "carTitle": "VW",
+              "created": "somedate",
+              "id": "2",
+            },
+            Object {
+              "amount": 10,
+              "carTitle": "Mers",
+              "created": "somedate",
+              "id": "3",
+            },
+          ],
+          "email": "sdfsf@sdsdf.com",
+          "firstname": "sdfdsf",
+          "hasPremium": true,
+          "id": "1",
+          "lastname": "sdfsdf",
+          "phone": "34534345",
+        }
+      }
+      model="editModal"
+    >
+      <Form
+        createForm={[Function]}
+        data={
+          Object {
+            "avatarUrl": "http://sdsfd.com",
+            "bids": Array [
+              Object {
+                "amount": 10,
+                "carTitle": "BMW",
+                "created": "somedate",
+                "id": "1",
+              },
+              Object {
+                "amount": 10,
+                "carTitle": "VW",
+                "created": "somedate",
+                "id": "2",
+              },
+              Object {
+                "amount": 10,
+                "carTitle": "Mers",
+                "created": "somedate",
+                "id": "3",
+              },
+            ],
+            "email": "sdfsf@sdsdf.com",
+            "firstname": "sdfdsf",
+            "hasPremium": true,
+            "id": "1",
+            "lastname": "sdfsdf",
+            "phone": "34534345",
+          }
+        }
+        model="editModal"
+      >
+        <form>
+          <Connect(InputField)
+            lable="Phone"
+            model="editModal.phone"
+            name="phone"
+          >
+            <InputField
+              changeField={[Function]}
+              lable="Phone"
+              model="editModal.phone"
+              name="phone"
+              value="34534345"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="exampleInputEmail1"
+                >
+                  Phone
+                </label>
+                <input
+                  className="form-control"
+                  name="phone"
+                  onChange={[Function]}
+                  value="34534345"
+                />
+              </div>
+            </InputField>
+          </Connect(InputField)>
+          <Connect(CheckBoxField)
+            lable="Premium"
+            model="editModal.hasPremium"
+          >
+            <CheckBoxField
+              changeField={[Function]}
+              checked={true}
+              lable="Premium"
+              model="editModal.hasPremium"
+            >
+              <div
+                className="checkbox"
+              >
+                <label>
+                  <input
+                    checked={true}
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                   
+                  Premium
+                </label>
+              </div>
+            </CheckBoxField>
+          </Connect(CheckBoxField)>
+        </form>
+      </Form>
+    </lifecycle(Form)>
+  </Connect(lifecycle(Form))>
+</Provider>
+`;
