@@ -28,6 +28,7 @@ const {
   prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils');
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
@@ -47,6 +48,8 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
 app.use('/API', apiRoutes);
 app.use('/css', express.static(path.dirname(__dirname) + '/node_modules/bootstrap/dist/css'));
 

@@ -14,12 +14,12 @@ router.get('/merchants', (req, res) => {
   return res.json(merchants);
 })
 
-router.post('/merchants', (req, res) => {
-  return res.json({data: 1});
+router.post('/merchant', (req, res) => {
+  return res.json(req.body);
 })
 
-router.put('/merchants/:id', (req, res) => {
-  return res.json({data: 1});
+router.put('/merchant', (req, res) => {
+  return res.json(req.body);
 })
 
 router.get('/merchants/:id/bids', (req, res) => {
