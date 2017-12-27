@@ -8,6 +8,7 @@ import columns from './columns';
 import Table from '../generic/Table';
 import Paginator from '../generic/Paginator';
 import EditModal from '../generic/EditModal'
+import actions from '../generic/Modal/actions';
 
 type Bid = {
   id: string,
@@ -33,9 +34,11 @@ const
 
 const
   Merchants = (props: {
-    setShowEditModal: (boolean)=>{},
-    showEditModal: boolean,
+    editMerchant: string,
+    closeModal: (string)=>{},
+    openModal: (string)=>{},
     merchants: Array<Merchant>,
+    setEditMerchant: (string)=>{},
     sync: ()=>{},
   }) => <Fragment>
     <Table
@@ -44,7 +47,14 @@ const
       module="records"
 
       actionsColumns={[
-        {type: 'edit', title: 'Edit', name: 'mode edit', isServiceField: true, action: id => () => {props.setEditMerchant(id); props.setShowEditModal(true)}}, 
+        {
+          type          : 'edit',
+          title         : 'Edit',
+          name          : 'mode edit',
+          isServiceField: true,
+          action        : id => () => {props.setEditMerchant(id); props.openModal('edit-modal-merchant')}
+        },
+ 
         {type: 'remove', title: 'Delete', name: 'delete', isServiceField: true, action: () => {}},
       ]}
     />
@@ -52,9 +62,8 @@ const
     <Paginator pagesCount={4} limit={limit} sync={props.sync}/>
 
     <EditModal
+      uniqueId="edit-modal-merchant"
       data={_.find(props.merchants, {id: props.editMerchant})}
-      show={props.showEditModal}
-      closeModal={()=>props.setShowEditModal(false)}
     />
   </Fragment>;
 
@@ -65,13 +74,15 @@ export default compose(
     }),
 
     dispatch => ({
+      closeModal: uniqueId => dispatch(actions.closeModal(uniqueId)),
+      openModal : uniqueId => dispatch(actions.openModal(uniqueId)),
+
       // TODO: after changing sync from redux-api to custom, make header reader
       // to determine pagination count
       sync: (data, cb) => dispatch(rest.actions.merchants.sync({limit: data.limit, start: data.start})),
     })
   ),
 
-  withState('showEditModal', 'setShowEditModal', false),
   withState('editMerchant', 'setEditMerchant', ''),
 
   lifecycle({

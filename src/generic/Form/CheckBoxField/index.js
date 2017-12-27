@@ -7,7 +7,8 @@ import actions from '../actions';
 
 const
   CheckBoxField = (props: {
-    changeField: ()=>{},
+    changeField: (string, boolean)=>{},
+    checked: boolean,
     model: string,
     lable: string,
     name: string,
