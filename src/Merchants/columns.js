@@ -1,8 +1,10 @@
 export default [
   {
+    isLink: true,
     title: 'Id',
     name : 'id'
   },
+
   {
     title   : 'Firstname',
     name    : 'firstname',

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import merchantsRest from './Merchants/rest';
+import bidsRest from './Bids/rest';
 import formReducer from './generic/Form/reducers';
 import tableReducer from './generic/Table/reducers';
 import modalReducer from './generic/Modal/reducers';
@@ -23,6 +24,7 @@ const enhancers = [];
 
     rest: combineReducers({
       ...merchantsRest.reducers,
+      ...bidsRest.reducers,
     }),
 
     routing: routerReducer,

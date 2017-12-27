@@ -1,6 +1,7 @@
 const
   router = require('express').Router(),
-  merchants = require('../fixtures/merchants');
+  merchants = require('../fixtures/merchants'),
+  bids = require('../fixtures/bids');
 
 router.get('/merchants', (req, res) => {
   res.set('X-Pagination-Count', merchants.length);
@@ -23,7 +24,7 @@ router.put('/merchant', (req, res) => {
 })
 
 router.get('/merchants/:id/bids', (req, res) => {
-  return res.json({data: 1});
+  return res.json(bids);
 })
 
 module.exports = router;
