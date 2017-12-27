@@ -10,15 +10,11 @@ import rest from '../../Merchants/rest';
 
 const
   EditModal = (props: {
-    closeModal: ()=>{},
     save: ()=>{},
     data: {},
-    show: boolean,
   }) => <Modal
-    closeModal={props.closeModal}
     save={props.save}
     header={`Edit Merchant #${_.get(props.data, 'id')}`}
-    show={props.show}
   >
     <Form model="editModal" data={props.data}>
       <InputField model="editModal.firstname" name="firstName" lable="First Name" />

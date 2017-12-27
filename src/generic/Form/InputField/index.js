@@ -7,7 +7,7 @@ import actions from '../actions';
 
 const
   InputField = (props: {
-    changeField: ()=>{},
+    changeField: (string, boolean)=>{},
     model: string,
     lable: string,
     name: string,
