@@ -5,7 +5,7 @@ import './index.css';
 import Merchants from './Merchants';
 import Bids from './Bids';
 import configureStore, {history} from './configureStore';
-import { Route } from 'react-router'
+import { Route, Redirect } from 'react-router'
 import { ConnectedRouter } from 'react-router-redux'
 import registerServiceWorker from './registerServiceWorker';
 
@@ -15,7 +15,8 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Fragment>
-        <Route exact path="/" component={Merchants}/>
+        <Route exact path="/" render={() => <Redirect to="/merchants" component={Merchants} />} />
+        <Route exact path="/merchants" component={Merchants}/>
         <Route exact path="/merchants/:id/bids" component={Bids}/>
       </Fragment>
     </ConnectedRouter>
