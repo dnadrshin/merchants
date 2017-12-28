@@ -7,13 +7,16 @@ import Form from '../Form';
 import {compose, withHandlers} from 'recompose';
 import {connect} from 'react-redux';
 import rest from '../../Merchants/rest';
+import actions from '../Modal/actions';
 
 const
   EditModal = (props: {
     save: ()=>{},
     data: {},
+    uniqueId: string,
   }) => <Modal
     save={props.save}
+    uniqueId={props.uniqueId}
     header={`Edit Merchant #${_.get(props.data, 'id')}`}
   >
     <Form model="editModal" data={props.data}>
@@ -33,11 +36,12 @@ export default compose(
     }),
 
     ({
-      put: rest.actions.merchant.put
+      put: rest.actions.merchant.put,
+      closeModal: actions.closeModal,
     })
   ),
 
   withHandlers({
-    save: props => () => {props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}); props.closeModal()}
+    save: props => () => {props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}); props.closeModal(props.uniqueId)}
   }),
 )(EditModal);
