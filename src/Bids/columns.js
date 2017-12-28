@@ -6,7 +6,6 @@ export default [
     {
       title   : 'Car Title',
       name    : 'carTitle',
-      isSorted: true,
     },
   
     {
@@ -18,6 +17,7 @@ export default [
       type: 'date',
       title: 'Created At',
       name : 'created',
+      isSorted: true,
     },
   ];
   
