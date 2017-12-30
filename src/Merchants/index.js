@@ -66,7 +66,13 @@ const
       <RowWrapper rowGenerator={({data, columns}) => rowGenerator({props, data, columns})} />
     </Table>
 
-    <Paginator module="merchants" pagesCount={4} limit={limit} sync={props.sync} setPagination={props.setPagination}/>
+    <Paginator
+      module="merchants"
+      pagesCount={4}
+      limit={limit}
+      setPagination={props.setPagination}
+      pagination={props.pagination}
+    />
 
     <EditModal
       uniqueId="edit-modal-merchant"
@@ -107,7 +113,8 @@ const
 export default compose(
   connect(
     state => ({
-      merchants: state.rest.merchants.data,
+      merchants : state.rest.merchants.data,
+      pagination: _.get(state.table, 'merchants.pagination', {start: 1, limit: 3}),
     }),
 
     dispatch => ({

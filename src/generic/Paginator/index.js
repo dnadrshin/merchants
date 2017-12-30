@@ -1,8 +1,11 @@
 // @flow
 import _ from 'lodash'
 import React from 'react';
+const
+  getActivePage = pagination => (pagination.start - 1) / pagination.limit + 1;
 
 export default (props: {
+  pagination: {},
   limit: number,
   pagesCount: number,
   module: string,
@@ -15,14 +18,17 @@ export default (props: {
         </a>
     </li>}
 
-    {_.range(1, props.pagesCount+1).map(num => <li key={`pagination-page-${num}`}>
-      <a
-        href=""
-        onClick={
-          e => {
-            e.preventDefault();
-            props.setPagination(props.module, props.limit, (num - 1)*props.limit + 1);
-        }}>{num}</a>
+    {_.range(1, props.pagesCount+1).map(num => <li
+      className={num === getActivePage(props.pagination) ? 'active' : ''} 
+      key={`pagination-page-${num}`}
+      >
+        <a
+          href=""
+          onClick={
+            e => {
+              e.preventDefault();
+              props.setPagination(props.module, props.limit, (num - 1)*props.limit + 1);
+          }}>{num}</a>
     </li>)}
 
     {false && <li>
