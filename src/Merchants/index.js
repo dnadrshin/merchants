@@ -13,7 +13,8 @@ import Paginator from '../generic/Paginator';
 import EditModal from '../generic/EditModal'
 import actions from '../generic/Modal/actions';
 import Icon from '../generic/Table/Row/Icon';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import Button from '../generic/Button';
 
 type Bid = {
   id: string,
@@ -48,6 +49,8 @@ const
     setPagination: ()=>{},
     sync: ()=>{},
   }) => <Fragment>
+    <Button name="Add Merchant" action={() => props.openModal('new-modal-merchant')} />
+
     <Table
       data={props.merchants}
       columns={columns}
@@ -67,6 +70,12 @@ const
     <EditModal
       uniqueId="edit-modal-merchant"
       data={_.find(props.merchants, {id: props.editMerchant})}
+    />
+
+    <EditModal
+      addNew
+      uniqueId="new-modal-merchant"
+      data={{}}
     />
   </Fragment>,
 

@@ -17,12 +17,17 @@ export default compose(
 
     ({
       createForm: actions.createForm,
+      resetForm : actions.resetForm,
     })
   ),
 
   lifecycle({
     componentDidMount() {
       this.props.createForm(this.props.model, this.props.data);
+    },
+
+    componentWillUnmount() {
+      this.props.resetForm(this.props.model)
     }
   })
 )(Form);

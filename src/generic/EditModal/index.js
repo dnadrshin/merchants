@@ -17,7 +17,7 @@ const
   }) => <Modal
     save={props.save}
     uniqueId={props.uniqueId}
-    header={`Edit Merchant #${_.get(props.data, 'id')}`}
+    header={props.addNew ? 'Add new merchant' : `Edit Merchant #${_.get(props.data, 'id')}`}
   >
     <Form model="editModal" data={props.data}>
       <InputField model="editModal.firstname" name="firstName" lable="First Name" />
@@ -36,12 +36,19 @@ export default compose(
     }),
 
     ({
-      put: rest.actions.merchant.put,
+      put       : rest.actions.merchant.put,
+      post      : rest.actions.merchant.post,
       closeModal: actions.closeModal,
     })
   ),
 
   withHandlers({
-    save: props => () => {props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}); props.closeModal(props.uniqueId)}
+    save: props => () => {
+      props.addNew
+        ? props.post(null, {body: JSON.stringify(props.merchant)})
+        : props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)});
+
+        props.closeModal(props.uniqueId)
+    },
   }),
 )(EditModal);
