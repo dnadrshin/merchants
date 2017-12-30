@@ -3,7 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import {compose, withHandlers} from 'recompose';
+import {compose, withHandlers, lifecycle} from 'recompose';
 import actions from './actions';
 import styles from './assets/component.css';
 
@@ -28,7 +28,7 @@ const
                             : ''
                         }
 
-                        {columnSettings && _.get(columnSettings,'sorting.column') === column.name
+                        {column.isSorted && _.get(columnSettings,'sorting.column') === column.name
                             ? _.get(columnSettings,'sorting.order') === 'asc' 
                                 ? <i className="material-icons">arrow_downward</i>
                                 : <i className="material-icons">arrow_upward</i>
@@ -62,9 +62,16 @@ export default compose(
     ),
 
     withHandlers({
-        sorting: props => (module, column, sortBy) => {
-            props.toggleSorting(module, column, sortBy);
-            setTimeout(() => props.submit(), 0);
+        sorting: props => (module, column, sortBy) => props.toggleSorting(module, column, sortBy)
+    }),
+
+    lifecycle({
+        componentWillReceiveProps(nextProps) {
+            if(!_.isEqual(this.props.columnSettings, nextProps.columnSettings))
+                this.props.sync({
+                    ...nextProps.columnSettings.pagination,
+                    ...nextProps.columnSettings.sorting,
+                })
         }
     })
 )(Table);

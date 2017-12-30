@@ -17,4 +17,14 @@ export default (state = {}, action) => reduce(state, action, {
         : {column: action.column, order: 'asc'},
     },
   }),
+
+  [actions.types.SET_PAGINATION]: () => ({
+    ...state,
+
+    [action.key]: {
+      ...state[action.key],
+
+      pagination: {limit: action.limit, start: action.start},
+    },
+  }),
 });

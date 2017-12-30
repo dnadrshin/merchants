@@ -28,6 +28,7 @@ const
     editMerchant: string,
     closeModal: (string)=>{},
     openModal: (string)=>{},
+    push: (string)=>{},
     bids: Array<Bids>,
     setEditMerchant: (string)=>{},
     sync: ()=>{},
@@ -37,7 +38,8 @@ const
     <Table
       data={props.bids}
       columns={columns}
-      module="records"
+      module="bids"
+      sync={props.sync}
     >
       <RowWrapper rowGenerator={({data, columns}) => rowGenerator({props, data, columns})} />
     </Table>
@@ -56,14 +58,14 @@ export default compose(
       bids: state.rest.bids.data,
     }),
 
-    dispatch => ({
+    (dispatch, props) => ({
       closeModal: uniqueId => dispatch(actions.closeModal(uniqueId)),
       openModal : uniqueId => dispatch(actions.openModal(uniqueId)),
       push      : url => dispatch(push(url)),
 
       // TODO: after changing sync from redux-api to custom, make header reader
       // to determine pagination count
-      sync: (data, cb) => dispatch(rest.actions.bids.sync({id:1, limit: data.limit, start: data.start})),
+      sync: (data, cb) => dispatch(rest.actions.bids.sync({id:props.match.params.id, order: data.order, orderby: data.column})),
     })
   ),
 

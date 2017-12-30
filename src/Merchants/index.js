@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {compose, lifecycle, withState} from 'recompose';
 import columns from './columns';
 import Table from '../generic/Table';
+import {default as tableActions} from '../generic/Table/actions';
 import RowWrapper from '../generic/Table/Row';
 import Cell from '../generic/Table/Row/Cell';
 import Paginator from '../generic/Paginator';
@@ -40,59 +41,58 @@ const
   Merchants = (props: {
     editMerchant: string,
     closeModal: (string)=>{},
+    delete: (string)=>{},
     openModal: (string)=>{},
     merchants: Array<Merchant>,
     setEditMerchant: (string)=>{},
+    setPagination: ()=>{},
     sync: ()=>{},
   }) => <Fragment>
     <Table
       data={props.merchants}
       columns={columns}
-      module="records"
+      module="merchants"
+      sync={props.sync}
 
       actionsColumns={[
-        {
-          type          : 'edit',
-          title         : 'Edit',
-        },
- 
+        {type: 'edit', title: 'Edit'},
         {type: 'remove', title: 'Delete'},
       ]}
     >
       <RowWrapper rowGenerator={({data, columns}) => rowGenerator({props, data, columns})} />
     </Table>
 
-    <Paginator pagesCount={4} limit={limit} sync={props.sync}/>
+    <Paginator module="merchants" pagesCount={4} limit={limit} sync={props.sync} setPagination={props.setPagination}/>
 
     <EditModal
       uniqueId="edit-modal-merchant"
       data={_.find(props.merchants, {id: props.editMerchant})}
     />
+  </Fragment>,
+
+  rowGenerator = ({props, data, columns}) => <Fragment>
+    <Cell> <Link to={`/merchants/${data.id}/bids`}>{data.id}</Link></Cell>
+    <Cell>{data.firstname}</Cell>
+    <Cell>{data.lastname}</Cell>
+    <Cell>{data.avatarUrl}</Cell>
+    <Cell>{data.email}</Cell>
+    <Cell>{data.phone}</Cell>
+    <Cell><input type="checkbox" checked={data.hasPremium} readOnly /></Cell>
+
+    <Cell>
+      <Icon
+          type={'mode edit'}
+          action={() => {props.setEditMerchant(data.id); props.openModal('edit-modal-merchant')}}
+      />
+    </Cell>
+
+    <Cell>
+      <Icon
+          type={'delete'}
+          action={() => props.delete(data.id)}
+      />
+    </Cell>
   </Fragment>;
-
-const rowGenerator = ({props, data, columns}) => <Fragment>
-  <Cell> <Link to={`/merchants/${data.id}/bids`}>{data.id}</Link></Cell>
-  <Cell>{data.firstname}</Cell>
-  <Cell>{data.lastname}</Cell>
-  <Cell>{data.avatarUrl}</Cell>
-  <Cell>{data.email}</Cell>
-  <Cell>{data.phone}</Cell>
-  <Cell><input type="checkbox" checked={data.hasPremium} readOnly /></Cell>
-
-  <Cell>
-    <Icon
-        type={'mode edit'}
-        action={() => {props.setEditMerchant(data.id); props.openModal('edit-modal-merchant')}}
-    />
-  </Cell>
-
-  <Cell>
-    <Icon
-        type={'delete'}
-        action={() => {props.setEditMerchant(data.id); props.openModal('edit-modal-merchant')}}
-    />
-  </Cell>
-</Fragment>;
 
 export default compose(
   connect(
@@ -106,7 +106,9 @@ export default compose(
 
       // TODO: after changing sync from redux-api to custom, make header reader
       // to determine pagination count
-      sync: (data, cb) => dispatch(rest.actions.merchants.sync({limit: data.limit, start: data.start})),
+      delete       : (id, cb) => dispatch(rest.actions.merchant.delete({id})),
+      sync         : (data, cb) => dispatch(rest.actions.merchants.sync({limit: data.limit, start: data.start, order: data.order, orderby: data.column})),
+      setPagination: (module, limit, start) => dispatch(tableActions.setPagination(module, limit, start)),
     })
   ),
 
