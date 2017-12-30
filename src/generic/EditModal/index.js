@@ -47,7 +47,7 @@ export default compose(
     save: props => () => {
       props.addNew
         ? props.post(null, {body: JSON.stringify(props.merchant)})
-        : props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)});
+        : props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}, err => props.resync());
 
         props.closeModal(props.uniqueId)
     },

@@ -77,6 +77,7 @@ const
     <EditModal
       uniqueId="edit-modal-merchant"
       data={_.find(props.merchants, {id: props.editMerchant})}
+      resync={() => props.sync({...props.pagination})}
     />
 
     <EditModal
