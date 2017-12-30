@@ -3,11 +3,14 @@ import React, {Fragment} from 'react';
 import rest from './rest';
 import {connect} from 'react-redux';
 import {compose, lifecycle, withState} from 'recompose';
+import RowWrapper from '../generic/Table/Row';
+import Cell from '../generic/Table/Row/Cell';
 import columns from './columns';
 import Table from '../generic/Table';
 import Button from '../generic/Button';
 import actions from '../generic/Modal/actions';
 import { push } from 'react-router-redux';
+import moment from 'moment';
 
 type Bids = {
   id: string,
@@ -35,8 +38,17 @@ const
       data={props.bids}
       columns={columns}
       module="records"
-    />
+    >
+      <RowWrapper rowGenerator={({data, columns}) => rowGenerator({props, data, columns})} />
+    </Table>
   </Fragment>;
+
+const rowGenerator = ({props, data, columns}) => <Fragment>
+  <Cell>{data.id}</Cell>
+  <Cell>{data.carTitle}</Cell>
+  <Cell>{data.amount}</Cell>
+  <Cell>{moment(data.created).format('MM/DD/YYYY')}</Cell>
+</Fragment>;
 
 export default compose(
   connect(

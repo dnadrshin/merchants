@@ -15,4 +15,24 @@ export default [
     title: 'Lastname',
     name : 'lastname',
   },
+
+  {
+    title: 'Avatar Url',
+    name : 'avatarUrl',
+  },
+
+  {
+    title: 'Email',
+    name : 'email',
+  },
+
+  {
+    title: 'Phone',
+    name : 'phone',
+  },
+
+  {
+    title: 'Premium',
+    name : 'hasPremium',
+  },
 ];

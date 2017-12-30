@@ -4,7 +4,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {compose, withHandlers} from 'recompose';
-import Row from './Row';
 import actions from './actions';
 import styles from './assets/component.css';
 
@@ -12,7 +11,7 @@ const
     extendColumns = (columns, actionsColumns) => actionsColumns ? columns.concat(actionsColumns) : columns,
 
     Table = ({
-        actionsColumns, columns, columnSettings, data, module, sorting, toggleSorting, entityActions
+        actionsColumns, children, columns, columnSettings, data, module, sorting, toggleSorting, entityActions, rowGenerator
     }) => <x-table class={classNames(styles.mainTable, styles.className)}>
         <table className="table table-striped">
             <tbody>
@@ -29,7 +28,7 @@ const
                             : ''
                         }
 
-                        {_.get(columnSettings,'sorting.column') === column.name
+                        {columnSettings && _.get(columnSettings,'sorting.column') === column.name
                             ? _.get(columnSettings,'sorting.order') === 'asc' 
                                 ? <i className="material-icons">arrow_downward</i>
                                 : <i className="material-icons">arrow_upward</i>
@@ -38,12 +37,12 @@ const
                 </tr>
 
                 {data
-                    ? data.map(row => <Row
-                        data={row}
-                        columns={extendColumns(columns, actionsColumns)}
-                        key={row.id}
-                        actions={entityActions}
-                    />)
+                    ? data.map(row => React.cloneElement(children, {
+                        data   : row,
+                        columns: extendColumns(columns, actionsColumns),
+                        key    : row.id,
+                        actions: entityActions,
+                    }))
 
                     : <tr><td>no data</td></tr>
                 }
