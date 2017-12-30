@@ -5,6 +5,7 @@ import actions from './actions';
 
 const
   Form = (props: {
+    children?: React$Element<*>,
     data: {},
     model: string
   }) => <form>

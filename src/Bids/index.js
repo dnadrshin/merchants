@@ -11,8 +11,9 @@ import Button from '../generic/Button';
 import actions from '../generic/Modal/actions';
 import { push } from 'react-router-redux';
 import moment from 'moment';
+import Panel from '../generic/Panel';
 
-type Bids = {
+export type Bids = {
   id: string,
   carTitle: string,
   amount: number,
@@ -33,7 +34,13 @@ const
     setEditMerchant: (string)=>{},
     sync: ()=>{},
   }) => <Fragment>
-    <Button name="Back to List" action={() => props.push('/')} />
+    <Panel title="Bids List">
+      <Button
+        icon="chevron_left"
+        name="Back to Merchants List"
+        action={() => props.push('/')}
+      />
+    </Panel>
 
     <Table
       data={props.bids}

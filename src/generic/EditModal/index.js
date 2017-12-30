@@ -11,6 +11,7 @@ import actions from '../Modal/actions';
 
 const
   EditModal = (props: {
+    addNew?: boolean,
     save: ()=>{},
     data: {},
     uniqueId: string,

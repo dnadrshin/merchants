@@ -15,13 +15,8 @@ import actions from '../generic/Modal/actions';
 import Icon from '../generic/Table/Row/Icon';
 import {Link} from 'react-router-dom';
 import Button from '../generic/Button';
-
-type Bid = {
-  id: string,
-  carTitle: string,
-  amount: number,
-  created: string,
-}
+import type Bid from '../Bids';
+import Panel from '../generic/Panel';
 
 type Merchant = {
   id: string,
@@ -49,7 +44,13 @@ const
     setPagination: ()=>{},
     sync: ()=>{},
   }) => <Fragment>
-    <Button name="Add Merchant" action={() => props.openModal('new-modal-merchant')} />
+    <Panel title="Merchant List">
+      <Button
+        icon="person add"
+        name="Add Merchant"
+        action={() => props.openModal('new-modal-merchant')}
+      />
+    </Panel>
 
     <Table
       data={props.merchants}
@@ -90,7 +91,7 @@ const
 
     <Cell>
       <Icon
-          type={'mode edit'}
+          type={'mode_edit'}
           action={() => {props.setEditMerchant(data.id); props.openModal('edit-modal-merchant')}}
       />
     </Cell>

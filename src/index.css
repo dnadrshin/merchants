@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 14px;
   font-family: sans-serif;
 }
 
@@ -8,7 +8,7 @@ body {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 18px;  /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -27,4 +27,8 @@ body {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  text-align: center;
 }
