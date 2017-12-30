@@ -64,7 +64,7 @@ module.exports = [
         avatarUrl: 'http://sdsfd.com',
         email: 'sdfsf@sdsdf.com',
         phone: '34534345',
-        hasPremium: true,
+        hasPremium: false,
         bids: [
             {
                 id: '6',

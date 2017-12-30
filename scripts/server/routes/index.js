@@ -19,6 +19,10 @@ router.post('/merchant', (req, res) => {
   return res.json(req.body);
 })
 
+router.delete('/merchant', (req, res) => {
+  return res.json(req.query);
+})
+
 router.put('/merchant', (req, res) => {
   return res.json(req.body);
 })

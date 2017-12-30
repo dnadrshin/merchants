@@ -8,7 +8,6 @@ export default [
   {
     title   : 'Firstname',
     name    : 'firstname',
-    isSorted: true,
   },
 
   {
