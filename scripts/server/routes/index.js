@@ -17,18 +17,18 @@ router.get('/merchants', (req, res) => {
 
 router.post('/merchant', (req, res) => {
   return res.json(req.body);
-})
+});
 
 router.delete('/merchant', (req, res) => {
   return res.json(req.query);
-})
+});
 
 router.put('/merchant', (req, res) => {
   return res.json(req.body);
-})
+});
 
 router.get('/merchants/:id/bids', (req, res) => {
   return res.json(bids);
-})
+});
 
 module.exports = router;

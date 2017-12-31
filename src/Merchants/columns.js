@@ -1,13 +1,13 @@
 export default [
   {
     isLink: true,
-    title: 'Id',
-    name : 'id'
+    title : 'Id',
+    name  : 'id',
   },
 
   {
-    title   : 'Firstname',
-    name    : 'firstname',
+    title: 'Firstname',
+    name : 'firstname',
   },
 
   {
@@ -35,3 +35,4 @@ export default [
     name : 'hasPremium',
   },
 ];
+

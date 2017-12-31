@@ -20,8 +20,8 @@ export default reduxApi({
   },
 
   merchant: {
-    crud       : true,
-    url        : '/API/merchant',
+    crud: true,
+    url : '/API/merchant',
     options,
   },
 }).use('fetch', adapterFetch(fetch));

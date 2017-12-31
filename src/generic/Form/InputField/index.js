@@ -13,7 +13,7 @@ const
     name: string,
     value: string,
     placeholder: string,
-    type: string,
+    type: string
   }) => <div className="form-group">
     <label htmlFor="exampleInputEmail1">{props.lable}</label>
 
@@ -27,14 +27,12 @@ const
     />
   </div>;
 
-export default compose(
-  connect(
-    (state, props) => ({
-      value: _.get(state.form, props.model, '')
-    }),
+export default compose(connect(
+  (state, props) => ({
+    value: _.get(state.form, props.model, ''),
+  }),
 
-    ({
-      changeField: actions.changeField,
-    })
-  ),
-)(InputField);
+  ({
+    changeField: actions.changeField,
+  }),
+))(InputField);

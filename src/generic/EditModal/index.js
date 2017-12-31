@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
+import {compose, withHandlers} from 'recompose';
+import {connect} from 'react-redux';
 import Modal from '../Modal';
 import InputField from '../Form/InputField';
 import CheckBoxField from '../Form/CheckBoxField';
 import Form from '../Form';
-import {compose, withHandlers} from 'recompose';
-import {connect} from 'react-redux';
 import rest from '../../Merchants/rest';
 import actions from '../Modal/actions';
 
@@ -28,7 +28,7 @@ const
       <InputField model="editModal.phone" name="phone" lable="Phone" />
       <CheckBoxField model="editModal.hasPremium" lable="Premium" />
     </Form>
-  </Modal>
+  </Modal>;
 
 export default compose(
   connect(

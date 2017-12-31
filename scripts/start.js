@@ -14,7 +14,7 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../config/env');
 
-const apiRoutes = require('./server/routes')
+const apiRoutes = require('./server/routes');
 const fs = require('fs');
 const chalk = require('chalk');
 const webpack = require('webpack');
@@ -28,7 +28,7 @@ const {
   prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils');
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const app = express();
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');

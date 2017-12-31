@@ -47,17 +47,17 @@ const
   })),
 
   instance = Enzyme.mount(<Provider store={store}>
-      <Form model="editModal" data={data} >
-        <InputField model="editModal.phone" name="phone" lable="Phone" />
-        <CheckBoxField model="editModal.hasPremium" lable="Premium" />
-      </Form>
-    </Provider>);
+    <Form model="editModal" data={data} >
+      <InputField model="editModal.phone" name="phone" lable="Phone" />
+      <CheckBoxField model="editModal.hasPremium" lable="Premium" />
+    </Form>
+  </Provider>);
 
 
 describe('Form component', () => {
   it('render form with two Field with proper values', () => {
     expect(toJson(instance)).toMatchSnapshot();
-    expect(instance.find('input[name="phone"]').props().value).toBe("34534345");
+    expect(instance.find('input[name="phone"]').props().value).toBe('34534345');
     expect(instance.find('input[type="checkbox"]').props().checked).toBe(true);
   });
 
@@ -67,5 +67,5 @@ describe('Form component', () => {
     expect(toJson(instance)).toMatchSnapshot();
     expect(store.getState().form.editModal.phone).toBe('+1111122222');
     expect(store.getState().form.editModal.hasPremium).toBe(false);
-  })
+  });
 });

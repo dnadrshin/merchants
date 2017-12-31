@@ -18,8 +18,8 @@ export default (state = {}, action) => reduce(state, action, {
   }),
 
 
-  [actions.types.RESET_FORM]: () => ({    ...state,
-
+  [actions.types.RESET_FORM]: () => ({
+    ...state,
     [action.model]: {},
   }),
 });
