@@ -13,6 +13,7 @@ import Loading from '../Loading';
 const
   EditModal = (props: {
     addNew?: boolean,
+    isLoading: boolean,
     save: ()=>{},
     data: {},
     uniqueId: string,
@@ -47,7 +48,7 @@ export default compose(
       put       : rest.actions.merchant.put,
       post      : rest.actions.merchant.post,
       closeModal: actions.closeModal,
-    })
+    }),
   ),
 
   withHandlers({
@@ -56,7 +57,7 @@ export default compose(
         ? props.post(null, {body: JSON.stringify(props.merchant)})
         : props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}, err => props.resync());
 
-        props.closeModal(props.uniqueId)
+        props.closeModal(props.uniqueId);
     },
   }),
 )(EditModal);
