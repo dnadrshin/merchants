@@ -13,7 +13,7 @@ import Paginator from '../generic/Paginator';
 import EditModal from '../generic/EditModal';
 import actions from '../generic/Modal/actions';
 import Button from '../generic/Button';
-import type Bid from '../Bids';
+import {type Bid} from '../Bids';
 import Panel from '../generic/Panel';
 import Loading from '../generic/Loading';
 
@@ -28,10 +28,8 @@ type Merchant = {
   bids: Array<Bid>
 };
 
-// TODO: Make global settings for per page limit
-const
-  limit = 3,
 
+const
   Merchants = (props: {
     isLoading: boolean,
     editMerchant: string,
@@ -74,7 +72,9 @@ const
     <Paginator
       module="merchants"
       pagesCount={4}
-      limit={limit}
+
+      // TODO: Make global settings for per page limit
+      limit={3}
       setPagination={props.setPagination}
       pagination={props.pagination}
     />
@@ -125,7 +125,8 @@ export default compose(
 
   lifecycle({
     componentDidMount() {
-      this.props.sync({limit, start: 1});
+      // TODO: Make global settings for per page limit
+      this.props.sync({limit: 3, start: 1});
     },
   }),
 )(Merchants);

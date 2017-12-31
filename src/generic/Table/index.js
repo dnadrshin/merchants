@@ -39,7 +39,7 @@ const
               }
 
               {column.isSorted && _.get(props.columnSettings, 'sorting.column') === column.name
-                ? _.get(props.columnSettings, 'sorting.order') === 'asc' 
+                ? _.get(props.columnSettings, 'sorting.order') === 'asc'
                   ? <i className="material-icons">arrow_downward</i>
                   : <i className="material-icons">arrow_upward</i>
                 : ''}

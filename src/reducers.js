@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-undef */
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import merchantsRest from './Merchants/rest';
