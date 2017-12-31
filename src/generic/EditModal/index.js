@@ -1,21 +1,23 @@
+// @flow
 import _ from 'lodash';
 import React, {Fragment} from 'react';
+import {compose, withHandlers, defaultProps} from 'recompose';
+import {connect} from 'react-redux';
 import Modal from '../Modal';
 import InputField from '../Form/InputField';
 import CheckBoxField from '../Form/CheckBoxField';
 import Form from '../Form';
-import {compose, withHandlers} from 'recompose';
-import {connect} from 'react-redux';
 import rest from '../../Merchants/rest';
 import actions from '../Modal/actions';
 import Loading from '../Loading';
 
 const
   EditModal = (props: {
-    addNew?: boolean,
+    addNew: boolean,
+    isLoading: boolean,
     save: ()=>{},
     data: {},
-    uniqueId: string,
+    uniqueId: string
   }) => <Fragment>
     <Modal
       save={props.save}
@@ -34,29 +36,35 @@ const
     </Modal>
 
     <Loading show={props.isLoading} />
-  </Fragment>
+  </Fragment>;
 
 export default compose(
   connect(
     state => ({
       isLoading: state.rest.merchant.loading,
-      merchant : _.get(state.form, 'editModal', {})
+      merchant : _.get(state.form, 'editModal', {}),
     }),
 
     ({
       put       : rest.actions.merchant.put,
       post      : rest.actions.merchant.post,
       closeModal: actions.closeModal,
-    })
+    }),
   ),
+
+  defaultProps({addNew: false}),
 
   withHandlers({
     save: props => () => {
       props.addNew
         ? props.post(null, {body: JSON.stringify(props.merchant)})
-        : props.put({ id: props.merchant.id}, {body: JSON.stringify(props.merchant)}, err => props.resync());
+        : props.put(
+          {id: props.merchant.id},
+          {body: JSON.stringify(props.merchant)},
+          () => props.resync(),
+        );
 
-        props.closeModal(props.uniqueId)
+      props.closeModal(props.uniqueId);
     },
   }),
 )(EditModal);

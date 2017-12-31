@@ -15,13 +15,13 @@ export default reduxApi({
   merchants: {
     crud       : true,
     url        : '/API/merchants',
-    transformer: (resp, prevData, options) => transformJSONRequest(resp, data => data, options),
+    transformer: resp => transformJSONRequest(resp, data => data, options),
     options,
   },
 
   merchant: {
-    crud       : true,
-    url        : '/API/merchant',
+    crud: true,
+    url : '/API/merchant',
     options,
   },
 }).use('fetch', adapterFetch(fetch));

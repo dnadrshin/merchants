@@ -8,70 +8,80 @@ import actions from './actions';
 import styles from './assets/component.css';
 
 const
-    extendColumns = (columns, actionsColumns) => actionsColumns ? columns.concat(actionsColumns) : columns,
+  extendColumns = (columns, actionsColumns) => actionsColumns
+    ? columns.concat(actionsColumns)
+    : columns,
 
-    Table = ({
-        actionsColumns, children, columns, columnSettings, data, module, sorting, toggleSorting, entityActions, rowGenerator
-    }) => <x-table class={classNames(styles.mainTable, styles.className)}>
-        <table className="table table-striped">
-            <tbody>
-                <tr>
-                    {extendColumns(columns, actionsColumns).map((column, i) =>
-                    <th
-                        key={`${module}-header-${i}`}
-                        onClick={column.isSorted ? () => sorting(module, column.name) : () => {console.log('not sort')}}
-                    >
-                        {column.title}
+  Table = (props: {
+    actionsColumns: [],
+    children: React$Element<*>,
+    columns: [],
+    columnSettings: {},
+    data: [],
+    module: string,
+    sorting: ()=>{},
+    toggleSorting: ()=>{},
+    rowGenerator: ()=>{}
+  }) => <x-table class={classNames(styles.mainTable, styles.className)}>
+    <table className="table table-striped">
+      <tbody>
+        <tr>
+          {extendColumns(props.columns, props.actionsColumns).map((column, i) =>
+            <th
+              key={`${props.module}-header-${column.name}`}
+              onClick={column.isSorted ? () => props.sorting(props.module, column.name) : () => {}}
+            >
+              {column.title}
 
-                        {column.isSorted && !_.get(columnSettings,'sorting.order')
-                            ? <i className="material-icons">swap_vert</i>
-                            : ''
-                        }
+              {column.isSorted && !_.get(props.columnSettings, 'sorting.order')
+                ? <i className="material-icons">swap_vert</i>
+                : ''
+              }
 
-                        {column.isSorted && _.get(columnSettings,'sorting.column') === column.name
-                            ? _.get(columnSettings,'sorting.order') === 'asc' 
-                                ? <i className="material-icons">arrow_downward</i>
-                                : <i className="material-icons">arrow_upward</i>
-                            : ''}
-                    </th>)}
-                </tr>
+              {column.isSorted && _.get(props.columnSettings, 'sorting.column') === column.name
+                ? _.get(props.columnSettings, 'sorting.order') === 'asc' 
+                  ? <i className="material-icons">arrow_downward</i>
+                  : <i className="material-icons">arrow_upward</i>
+                : ''}
+            </th>)}
+        </tr>
 
-                {data
-                    ? data.map(row => React.cloneElement(children, {
-                        data   : row,
-                        columns: extendColumns(columns, actionsColumns),
-                        key    : row.id,
-                        actions: entityActions,
-                    }))
+        {props.data
+          ? props.data.map(row => React.cloneElement(props.children, {
+            data   : row,
+            columns: extendColumns(props.columns, props.actionsColumns),
+            key    : row.id,
+          }))
 
-                    : <tr><td>no data</td></tr>
-                }
-            </tbody>
-        </table>
-    </x-table>;
+          : <tr><td>no data</td></tr>
+        }
+      </tbody>
+    </table>
+  </x-table>;
 
 export default compose(
-    connect(
-        (state, props) => ({
-            columnSettings: state.table[props.module],
-        }),
-
-        ({
-            toggleSorting: actions.toggleSorting,
-        }),
-    ),
-
-    withHandlers({
-        sorting: props => (module, column, sortBy) => props.toggleSorting(module, column, sortBy)
+  connect(
+    (state, props) => ({
+      columnSettings: state.table[props.module],
     }),
 
-    lifecycle({
-        componentWillReceiveProps(nextProps) {
-            if(!_.isEqual(this.props.columnSettings, nextProps.columnSettings))
-                this.props.sync({
-                    ...nextProps.columnSettings.pagination,
-                    ...nextProps.columnSettings.sorting,
-                })
-        }
-    })
+    ({
+      toggleSorting: actions.toggleSorting,
+    }),
+  ),
+
+  withHandlers({
+    sorting: props => (module, column, sortBy) => props.toggleSorting(module, column, sortBy),
+  }),
+
+  lifecycle({
+    componentWillReceiveProps(nextProps) {
+      if(!_.isEqual(this.props.columnSettings, nextProps.columnSettings)) {
+        this.props.sync({
+          ...nextProps.columnSettings.pagination,
+          ...nextProps.columnSettings.sorting,
+        });
+      }
+    },
+  }),
 )(Table);

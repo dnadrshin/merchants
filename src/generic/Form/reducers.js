@@ -14,12 +14,12 @@ export default (state = {}, action) => reduce(state, action, {
   }),
 
   [actions.types.CHANGE_FIELD]: () => ({
-    ..._.set(Object.assign(state), action.model, action.value)
+    ..._.set(Object.assign(state), action.model, action.value),
   }),
 
 
-  [actions.types.RESET_FORM]: () => ({    ...state,
-
+  [actions.types.RESET_FORM]: () => ({
+    ...state,
     [action.model]: {},
   }),
 });

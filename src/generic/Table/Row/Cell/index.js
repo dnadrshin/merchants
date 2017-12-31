@@ -1,7 +1,10 @@
+// @flow
 import React from 'react';
 
 const
-  Cell = (props) => <td>
+  Cell = (props: {
+    children?: React$Element<*>
+}) => <td>
     {props.children}
   </td>;
 

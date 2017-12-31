@@ -10,27 +10,23 @@ const
     changeField: (string, boolean)=>{},
     checked: boolean,
     model: string,
-    lable: string,
-    name: string,
-    value: boolean,
+    lable: string
   }) => <div className="checkbox">
     <label>
-        <input
-          type="checkbox"
-          checked={props.checked}
-          onChange={e => props.changeField(props.model, Boolean(e.target.checked))}
-        /> {props.lable}
+      <input
+        type="checkbox"
+        checked={props.checked}
+        onChange={e => props.changeField(props.model, Boolean(e.target.checked))}
+      /> {props.lable}
     </label>
   </div>;
 
-export default compose(
-  connect(
-    (state, props) => ({
-      checked: _.get(state.form, props.model, false)
-    }),
+export default compose(connect(
+  (state, props) => ({
+    checked: _.get(state.form, props.model, false),
+  }),
 
-    ({
-      changeField: actions.changeField,
-    })
-  ),
-)(CheckBoxField);
+  ({
+    changeField: actions.changeField,
+  }),
+))(CheckBoxField);
