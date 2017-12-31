@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, {Fragment} from 'react';
 import Modal from '../Modal';
 import InputField from '../Form/InputField';
 import CheckBoxField from '../Form/CheckBoxField';
@@ -8,6 +8,7 @@ import {compose, withHandlers} from 'recompose';
 import {connect} from 'react-redux';
 import rest from '../../Merchants/rest';
 import actions from '../Modal/actions';
+import Loading from '../Loading';
 
 const
   EditModal = (props: {
@@ -15,25 +16,31 @@ const
     save: ()=>{},
     data: {},
     uniqueId: string,
-  }) => <Modal
-    save={props.save}
-    uniqueId={props.uniqueId}
-    header={props.addNew ? 'Add new merchant' : `Edit Merchant #${_.get(props.data, 'id')}`}
-  >
-    <Form model="editModal" data={props.data}>
-      <InputField model="editModal.firstname" name="firstName" lable="First Name" />
-      <InputField model="editModal.lastname" name="lastName" lable="Last Name" />
-      <InputField model="editModal.avatarUrl" name="avatarUrl" lable="Avatar Url" />
-      <InputField model="editModal.email" name="email" lable="Email" />
-      <InputField model="editModal.phone" name="phone" lable="Phone" />
-      <CheckBoxField model="editModal.hasPremium" lable="Premium" />
-    </Form>
-  </Modal>
+  }) => <Fragment>
+    <Modal
+      save={props.save}
+      uniqueId={props.uniqueId}
+      header={props.addNew ? 'Add new merchant' : `Edit Merchant #${_.get(props.data, 'id')}`}
+    >
+      <Form model="editModal" data={props.data}>
+        <InputField model="editModal.firstname" name="firstName" lable="First Name" />
+        <InputField model="editModal.lastname" name="lastName" lable="Last Name" />
+        <InputField model="editModal.avatarUrl" name="avatarUrl" lable="Avatar Url" />
+        <InputField model="editModal.email" name="email" lable="Email" />
+        <InputField model="editModal.phone" name="phone" lable="Phone" />
+        <CheckBoxField model="editModal.hasPremium" lable="Premium" />
+      </Form>
+
+    </Modal>
+
+    <Loading show={props.isLoading} />
+  </Fragment>
 
 export default compose(
   connect(
     state => ({
-      merchant: _.get(state.form, 'editModal', {})
+      isLoading: state.rest.merchant.loading,
+      merchant : _.get(state.form, 'editModal', {})
     }),
 
     ({

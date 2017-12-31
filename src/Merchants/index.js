@@ -17,6 +17,7 @@ import {Link} from 'react-router-dom';
 import Button from '../generic/Button';
 import type Bid from '../Bids';
 import Panel from '../generic/Panel';
+import Loading from '../generic/Loading';
 
 type Merchant = {
   id: string,
@@ -85,6 +86,8 @@ const
       uniqueId="new-modal-merchant"
       data={{}}
     />
+
+    <Loading show={props.isLoading} />
   </Fragment>,
 
   rowGenerator = ({props, data, columns}) => <Fragment>
@@ -114,6 +117,7 @@ const
 export default compose(
   connect(
     state => ({
+      isLoading : state.rest.merchants.loading,
       merchants : state.rest.merchants.data,
       pagination: _.get(state.table, 'merchants.pagination', {start: 1, limit: 3}),
     }),
