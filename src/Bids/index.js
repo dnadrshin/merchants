@@ -12,6 +12,7 @@ import actions from '../generic/Modal/actions';
 import { push } from 'react-router-redux';
 import moment from 'moment';
 import Panel from '../generic/Panel';
+import Loading from '../generic/Loading';
 
 export type Bids = {
   id: string,
@@ -50,6 +51,8 @@ const
     >
       <RowWrapper rowGenerator={({data, columns}) => rowGenerator({props, data, columns})} />
     </Table>
+
+    <Loading show={props.isLoading} />
   </Fragment>;
 
 const rowGenerator = ({props, data, columns}) => <Fragment>
@@ -62,7 +65,8 @@ const rowGenerator = ({props, data, columns}) => <Fragment>
 export default compose(
   connect(
     state => ({
-      bids: state.rest.bids.data,
+      bids      : state.rest.bids.data,
+      isLoading : state.rest.bids.loading,
     }),
 
     (dispatch, props) => ({

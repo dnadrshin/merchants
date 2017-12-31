@@ -1,9 +1,16 @@
+//import { setTimeout } from 'timers';
+
 const
   router = require('express').Router(),
   merchants = require('../fixtures/merchants'),
-  bids = require('../fixtures/bids');
+  bids = require('../fixtures/bids'),
 
-router.get('/merchants', (req, res) => {
+  // Immitating fetch waiting
+  wainting = (req, res, next) => {
+    setTimeout(next, 1500)
+  }
+
+router.get('/merchants', wainting, (req, res) => {
   res.set('X-Pagination-Count', merchants.length);
   if(req.query.start && req.query.limit) return res.json(merchants.slice(
     Number(req.query.start) - 1,
@@ -15,19 +22,19 @@ router.get('/merchants', (req, res) => {
   return res.json(merchants);
 })
 
-router.post('/merchant', (req, res) => {
+router.post('/merchant', wainting, (req, res) => {
   return res.json(req.body);
 });
 
-router.delete('/merchant', (req, res) => {
+router.delete('/merchant', wainting, (req, res) => {
   return res.json(req.query);
 });
 
-router.put('/merchant', (req, res) => {
+router.put('/merchant', wainting, (req, res) => {
   return res.json(req.body);
 });
 
-router.get('/merchants/:id/bids', (req, res) => {
+router.get('/merchants/:id/bids', wainting, (req, res) => {
   return res.json(bids);
 });
 
