@@ -1,17 +1,16 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
+import {routerReducer} from 'react-router-redux';
 import merchantsRest from './Merchants/rest';
 import bidsRest from './Bids/rest';
 import formReducer from './generic/Form/reducers';
 import tableReducer from './generic/Table/reducers';
 import modalReducer from './generic/Modal/reducers';
-import { routerReducer } from 'react-router-redux';
 
-export default preloadedState => {
-
-const enhancers = [];
+export default () => {
+  const enhancers = [];
 
   if (process.env.NODE_ENV === 'development') {
-    const devToolsExtension = window.devToolsExtension
+    const devToolsExtension = window.devToolsExtension;
 
     if (typeof devToolsExtension === 'function') {
       enhancers.push(devToolsExtension());
@@ -19,7 +18,7 @@ const enhancers = [];
   }
 
   return combineReducers({
-    form: formReducer,
+    form : formReducer,
     modal: modalReducer,
 
     rest: combineReducers({
@@ -28,6 +27,6 @@ const enhancers = [];
     }),
 
     routing: routerReducer,
-    table: tableReducer,
-  })
-}
+    table  : tableReducer,
+  });
+};

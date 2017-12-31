@@ -15,7 +15,7 @@ export default reduxApi({
   bids: {
     crud       : true,
     url        : '/API/merchants/:id/bids',
-    transformer: (resp, prevData, options) => transformJSONRequest(resp, data => data, options),
+    transformer: resp => transformJSONRequest(resp, data => data, options),
     options,
   },
 }).use('fetch', adapterFetch(fetch));

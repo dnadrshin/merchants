@@ -15,9 +15,10 @@ const
     placeholder: string,
     type: string
   }) => <div className="form-group">
-    <label htmlFor="exampleInputEmail1">{props.lable}</label>
+    <label htmlFor={`label-${props.model}-${props.name}`}>{props.lable}</label>
 
     <input
+      id={`label-${props.model}-${props.name}`}
       type={props.type}
       className="form-control"
       placeholder={props.placeholder}

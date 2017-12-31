@@ -3,11 +3,13 @@ import _ from 'lodash';
 import React from 'react';
 
 const
-  getActivePage = (pagination: {start: number, limit: number}) => (pagination.start - 1) / pagination.limit + 1;
+  getActivePage = (pagination: {
+    start: number,
+    limit: number
+  }) => (pagination.start - 1) / pagination.limit + 1;
 
 export default (props: {
-  pagination: {},
-  limit: number,
+  pagination: {limit: number, start: number},
   pagesCount: number,
   module: string,
   setPagination: (string, number, number)=>{}
@@ -25,11 +27,18 @@ export default (props: {
     >
       <a
         href="/"
+
         onClick={
           e => {
             e.preventDefault();
-            props.setPagination(props.module, props.limit, (num - 1)*props.limit + 1);
-          }}>{num}</a>
+
+            props.setPagination(
+              props.module,
+              props.pagination.limit,
+              (num - 1) * props.pagination.limit + 1,
+            );
+          }}
+      >{num}</a>
     </li>)}
 
     {false && <li>

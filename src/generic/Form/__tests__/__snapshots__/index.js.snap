@@ -80,6 +80,7 @@ exports[`Form component changed field value changing store 1`] = `
         }
       }
       model="editModal"
+      resetForm={[Function]}
     >
       <Form
         createForm={[Function]}
@@ -115,6 +116,7 @@ exports[`Form component changed field value changing store 1`] = `
           }
         }
         model="editModal"
+        resetForm={[Function]}
       >
         <form>
           <Connect(InputField)
@@ -133,12 +135,13 @@ exports[`Form component changed field value changing store 1`] = `
                 className="form-group"
               >
                 <label
-                  htmlFor="exampleInputEmail1"
+                  htmlFor="label-editModal.phone-phone"
                 >
                   Phone
                 </label>
                 <input
                   className="form-control"
+                  id="label-editModal.phone-phone"
                   name="phone"
                   onChange={[Function]}
                   value="+1111122222"
@@ -258,6 +261,7 @@ exports[`Form component render form with two Field with proper values 1`] = `
         }
       }
       model="editModal"
+      resetForm={[Function]}
     >
       <Form
         createForm={[Function]}
@@ -293,6 +297,7 @@ exports[`Form component render form with two Field with proper values 1`] = `
           }
         }
         model="editModal"
+        resetForm={[Function]}
       >
         <form>
           <Connect(InputField)
@@ -311,12 +316,13 @@ exports[`Form component render form with two Field with proper values 1`] = `
                 className="form-group"
               >
                 <label
-                  htmlFor="exampleInputEmail1"
+                  htmlFor="label-editModal.phone-phone"
                 >
                   Phone
                 </label>
                 <input
                   className="form-control"
+                  id="label-editModal.phone-phone"
                   name="phone"
                   onChange={[Function]}
                   value="34534345"

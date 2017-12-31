@@ -1,19 +1,17 @@
 // @flow
 import _ from 'lodash';
 import React, {Fragment} from 'react';
-import rest from './rest';
 import {connect} from 'react-redux';
 import {compose, lifecycle, withState} from 'recompose';
 import columns from './columns';
 import Table from '../generic/Table';
-import {default as tableActions} from '../generic/Table/actions';
+import rest from './rest';
+import tableActions from '../generic/Table/actions';
 import RowWrapper from '../generic/Table/Row';
-import Cell from '../generic/Table/Row/Cell';
+import Row from './Row';
 import Paginator from '../generic/Paginator';
-import EditModal from '../generic/EditModal'
+import EditModal from '../generic/EditModal';
 import actions from '../generic/Modal/actions';
-import Icon from '../generic/Table/Row/Icon';
-import {Link} from 'react-router-dom';
 import Button from '../generic/Button';
 import type Bid from '../Bids';
 import Panel from '../generic/Panel';
@@ -27,23 +25,23 @@ type Merchant = {
   email: string,
   phone: string,
   hasPremium: boolean,
-  bids: Array<Bid>,
-}
+  bids: Array<Bid>
+};
 
 // TODO: Make global settings for per page limit
 const
-  limit = 3;
+  limit = 3,
 
-const
   Merchants = (props: {
+    isLoading: boolean,
     editMerchant: string,
-    closeModal: (string)=>{},
     delete: (string)=>{},
     openModal: (string)=>{},
+    pagination: {},
     merchants: Array<Merchant>,
     setEditMerchant: (string)=>{},
     setPagination: ()=>{},
-    sync: ()=>{},
+    sync: ()=>{}
   }) => <Fragment>
     <Panel title="Merchant List">
       <Button
@@ -60,11 +58,17 @@ const
       sync={props.sync}
 
       actionsColumns={[
-        {type: 'edit', title: 'Edit'},
-        {type: 'remove', title: 'Delete'},
+        {type: 'edit', title: 'Edit', name: 'edit'},
+        {type: 'remove', title: 'Delete', name: 'delete'},
       ]}
     >
-      <RowWrapper rowGenerator={({data, columns}) => rowGenerator({props, data, columns})} />
+      <RowWrapper rowGenerator={Row} >
+        <Row
+          setEditMerchant={props.setEditMerchant}
+          openModal={props.openModal}
+          delete={props.delete}
+        />
+      </RowWrapper>
     </Table>
 
     <Paginator
@@ -88,30 +92,6 @@ const
     />
 
     <Loading show={props.isLoading} />
-  </Fragment>,
-
-  rowGenerator = ({props, data, columns}) => <Fragment>
-    <Cell> <Link to={`/merchants/${data.id}/bids`}>{data.id}</Link></Cell>
-    <Cell>{data.firstname}</Cell>
-    <Cell>{data.lastname}</Cell>
-    <Cell>{data.avatarUrl}</Cell>
-    <Cell>{data.email}</Cell>
-    <Cell>{data.phone}</Cell>
-    <Cell><input type="checkbox" checked={data.hasPremium} readOnly /></Cell>
-
-    <Cell>
-      <Icon
-          type={'mode_edit'}
-          action={() => {props.setEditMerchant(data.id); props.openModal('edit-modal-merchant')}}
-      />
-    </Cell>
-
-    <Cell>
-      <Icon
-          type={'delete'}
-          action={() => props.delete(data.id)}
-      />
-    </Cell>
   </Fragment>;
 
 export default compose(
@@ -123,28 +103,29 @@ export default compose(
     }),
 
     dispatch => ({
-      closeModal: uniqueId => dispatch(actions.closeModal(uniqueId)),
-      openModal : uniqueId => dispatch(actions.openModal(uniqueId)),
+      openModal: uniqueId => dispatch(actions.openModal(uniqueId)),
 
       // TODO: after changing sync from redux-api to custom, make header reader
       // to determine pagination count
-      delete       : (id, cb) => dispatch(rest.actions.merchant.delete({id})),
-      sync         : (data, cb) => dispatch(rest.actions.merchants.sync({limit: data.limit, start: data.start, order: data.order, orderby: data.column})),
-      setPagination: (module, limit, start) => dispatch(tableActions.setPagination(module, limit, start)),
-    })
+      delete: id => dispatch(rest.actions.merchant.delete({id})),
+
+      sync: data => dispatch(rest.actions.merchants.sync({
+        limit  : data.limit,
+        start  : data.start,
+        order  : data.order,
+        orderby: data.column,
+      })),
+
+      setPagination: (module, limit, start) => dispatch(tableActions
+        .setPagination(module, limit, start)),
+    }),
   ),
 
   withState('editMerchant', 'setEditMerchant', ''),
 
   lifecycle({
     componentDidMount() {
-      this.props.sync(
-        {limit, start: 1},
-
-        (err, data) => {
-          if (err) console.log(err);
-        },
-      );
+      this.props.sync({limit, start: 1});
     },
   }),
-)(Merchants)
+)(Merchants);

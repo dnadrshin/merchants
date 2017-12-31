@@ -34,14 +34,12 @@ const
     </div>
   </Portal>;
 
-export default compose(
-  connect(
-    (state, props) => ({
-      show: _.get(state.modal[props.uniqueId], 'show', false),
-    }),
+export default compose(connect(
+  (state, props) => ({
+    show: _.get(state.modal[props.uniqueId], 'show', false),
+  }),
 
-    (dispatch, props) => ({
-      closeModal: () => dispatch(actions.closeModal(props.uniqueId)),
-    }),
-  ),
-)(Modal);
+  (dispatch, props) => ({
+    closeModal: () => dispatch(actions.closeModal(props.uniqueId)),
+  }),
+))(Modal);

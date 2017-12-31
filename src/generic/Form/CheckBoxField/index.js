@@ -10,9 +10,7 @@ const
     changeField: (string, boolean)=>{},
     checked: boolean,
     model: string,
-    lable: string,
-    name: string,
-    value: boolean
+    lable: string
   }) => <div className="checkbox">
     <label>
       <input

@@ -1,11 +1,16 @@
+// @flow
 import React from 'react';
 
 const
-  Icon = ({type, action}) => <i
+  Icon = (props: {
+    type: string,
+    action: ()=>{}
+  }) => <i
     className="material-icons"
     style={{cursor: 'pointer'}}
-    onClick={action}>
-      {type}
-    </i>;
+    onClick={props.action}
+  >
+    {props.type}
+  </i>;
 
 export default Icon;

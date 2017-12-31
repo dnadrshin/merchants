@@ -15,7 +15,7 @@ export default reduxApi({
   merchants: {
     crud       : true,
     url        : '/API/merchants',
-    transformer: (resp, prevData, options) => transformJSONRequest(resp, data => data, options),
+    transformer: resp => transformJSONRequest(resp, data => data, options),
     options,
   },
 

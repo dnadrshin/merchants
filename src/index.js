@@ -16,8 +16,8 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <Fragment>
         <Route exact path="/" render={() => <Redirect to="/merchants" component={Merchants} />} />
-        <Route exact path="/merchants" component={Merchants}/>
-        <Route exact path="/merchants/:id/bids" component={Bids}/>
+        <Route exact path="/merchants" component={Merchants} />
+        <Route exact path="/merchants/:id/bids" component={Bids} />
       </Fragment>
     </ConnectedRouter>
   </Provider>,
@@ -25,4 +25,4 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-registerServiceWorker()
+registerServiceWorker();

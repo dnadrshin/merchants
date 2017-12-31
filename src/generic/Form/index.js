@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {connect} from 'react-redux';
 import {lifecycle, compose} from 'recompose';
@@ -5,12 +6,10 @@ import actions from './actions';
 
 const
   Form = (props: {
-    children?: React$Element<*>,
-    data: {},
-    model: string
+    children?: React$Element<*>
   }) => <form>
-  {props.children}
-</form>;
+    {props.children}
+  </form>;
 
 export default compose(
   connect(
@@ -19,7 +18,7 @@ export default compose(
     ({
       createForm: actions.createForm,
       resetForm : actions.resetForm,
-    })
+    }),
   ),
 
   lifecycle({
@@ -28,7 +27,7 @@ export default compose(
     },
 
     componentWillUnmount() {
-      this.props.resetForm(this.props.model)
-    }
-  })
+      this.props.resetForm(this.props.model);
+    },
+  }),
 )(Form);

@@ -28,7 +28,12 @@
         }
     },
     "rules": {
-
+        "require-default-props": 0,
+        "keyword-spacing": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+        "jsx-a11y/label-has-for": 0,
+        "no-unused-expressions": 0,
     "flowtype/boolean-style": [
         2,
         "boolean"
@@ -49,7 +54,6 @@
         2,
         "comma"
         ],
-        "flowtype/require-parameter-type": 2,
         "flowtype/require-valid-file-annotation": 2,
         "flowtype/semi": [
         2,
@@ -66,10 +70,6 @@
         "flowtype/space-before-type-colon": [
         2,
         "never"
-        ],
-        "flowtype/type-id-match": [
-        2,
-        "^([A-Z][a-z0-9]+)+Type$"
         ],
         "flowtype/union-intersection-spacing": [
         2,
@@ -95,6 +95,7 @@
         "no-nested-ternary": 0,
         "jsx-a11y/href-no-hash": "off",
         "react/jsx-indent": 0,
+        "react/jsx-closing-tag-location": 0,
         "react/jsx-indent-props": 0,
         "react/jsx-wrap-multilines": "off",
         "react/no-multi-comp"      : 1,
