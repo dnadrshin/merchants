@@ -1,11 +1,7 @@
 [ignore]
 
-[include]
-
 [libs]
 
-[lints]
+[include]
 
 [options]
-
-[strict]

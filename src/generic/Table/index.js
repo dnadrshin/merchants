@@ -1,6 +1,6 @@
 // @flow
 import _ from 'lodash';
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {compose, withHandlers, lifecycle} from 'recompose';
@@ -19,7 +19,7 @@ const
     columnSettings: {},
     data: [],
     module: string,
-    sorting: ()=>{},
+    sorting: (string, string)=>{},
     toggleSorting: ()=>{},
     rowGenerator: ()=>{}
   }) => <x-table class={classNames(styles.mainTable, styles.className)}>
@@ -48,9 +48,8 @@ const
 
         {props.data
           ? props.data.map(row => React.cloneElement(props.children, {
-            data   : row,
-            columns: extendColumns(props.columns, props.actionsColumns),
-            key    : row.id,
+            data: row,
+            key : row.id,
           }))
 
           : <tr><td>no data</td></tr>

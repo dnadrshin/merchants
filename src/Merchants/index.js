@@ -28,18 +28,17 @@ type Merchant = {
   bids: Array<Bid>
 };
 
-
 const
   Merchants = (props: {
     isLoading: boolean,
     editMerchant: string,
     delete: (string)=>{},
     openModal: (string)=>{},
-    pagination: {},
+    pagination: {limit: number, start: number},
     merchants: Array<Merchant>,
     setEditMerchant: (string)=>{},
     setPagination: ()=>{},
-    sync: ()=>{}
+    sync: ({limit: number, start: number})=>{}
   }) => <Fragment>
     <Panel title="Merchant List">
       <Button
@@ -60,7 +59,7 @@ const
         {type: 'remove', title: 'Delete', name: 'delete'},
       ]}
     >
-      <RowWrapper rowGenerator={Row} >
+      <RowWrapper>
         <Row
           setEditMerchant={props.setEditMerchant}
           openModal={props.openModal}

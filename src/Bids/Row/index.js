@@ -2,7 +2,7 @@
 import moment from 'moment';
 import React, {Fragment} from 'react';
 import Cell from '../../generic/Table/Row/Cell';
-import type Bid from '../Bids';
+import {type Bid} from '../';
 
 export default (props: {
   data: Bid
