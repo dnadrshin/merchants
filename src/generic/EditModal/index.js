@@ -32,7 +32,6 @@ const
         <InputField model="editModal.phone" name="phone" lable="Phone" />
         <CheckBoxField model="editModal.hasPremium" lable="Premium" />
       </Form>
-
     </Modal>
 
     <Loading show={props.isLoading} />
@@ -40,8 +39,8 @@ const
 
 export default compose(
   connect(
-    state => ({
-      isLoading: state.rest.merchant.loading,
+    (state, props) => ({
+      isLoading: state.rest.merchant.loading && _.get(state.modal[props.uniqueId], 'show', false),
       merchant : _.get(state.form, 'editModal', {}),
     }),
 
@@ -57,14 +56,25 @@ export default compose(
   withHandlers({
     save: props => () => {
       props.addNew
-        ? props.post(null, {body: JSON.stringify(props.merchant)})
+        ? props.post(
+          null,
+          {body: JSON.stringify(props.merchant)},
+
+          () => {
+            props.closeModal(props.uniqueId);
+            props.resync();
+          },
+        )
+
         : props.put(
           {id: props.merchant.id},
           {body: JSON.stringify(props.merchant)},
-          () => props.resync(),
-        );
 
-      props.closeModal(props.uniqueId);
+          () => {
+            props.closeModal(props.uniqueId);
+            props.resync();
+          },
+        );
     },
   }),
 )(EditModal);

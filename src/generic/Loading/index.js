@@ -8,7 +8,7 @@ const
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     position       : 'fixed',
     left           : '0px',
-    zIndex         : '10',
+    zIndex         : '1000000',
     top            : '0px',
   },
 

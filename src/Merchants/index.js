@@ -88,6 +88,7 @@ const
       addNew
       uniqueId="new-modal-merchant"
       data={{}}
+      resync={() => props.sync({...props.pagination})}
     />
 
     <Loading show={props.isLoading} />
