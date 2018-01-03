@@ -7,6 +7,7 @@ import bidsRest from './Bids/rest';
 import formReducer from './generic/Form/reducers';
 import tableReducer from './generic/Table/reducers';
 import modalReducer from './generic/Modal/reducers';
+import merchantsReducer from './generic/RestAPI/reducers';
 
 export default () => {
   const enhancers = [];
@@ -28,7 +29,8 @@ export default () => {
       ...bidsRest.reducers,
     }),
 
-    routing: routerReducer,
-    table  : tableReducer,
+    merchants: merchantsReducer,
+    routing  : routerReducer,
+    table    : tableReducer,
   });
 };
