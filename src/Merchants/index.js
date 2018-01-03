@@ -16,6 +16,7 @@ import Button from '../generic/Button';
 import {type Bid} from '../Bids';
 import Panel from '../generic/Panel';
 import Loading from '../generic/Loading';
+import restActions from '../generic/RestAPI/actions';
 
 type Merchant = {
   id: string,
@@ -103,7 +104,8 @@ export default compose(
     }),
 
     dispatch => ({
-      openModal: uniqueId => dispatch(actions.openModal(uniqueId)),
+      getMerchants: params => dispatch(restActions.getMerchants(params)),
+      openModal   : uniqueId => dispatch(actions.openModal(uniqueId)),
 
       // TODO: after changing sync from redux-api to custom, make header reader
       // to determine pagination count
@@ -127,6 +129,9 @@ export default compose(
     componentDidMount() {
       // TODO: Make global settings for per page limit
       this.props.sync({limit: 3, start: 1});
+
+      // Example of async actions with thunk
+      this.props.getMerchants({limit: 3, start: 1});
     },
   }),
 )(Merchants);
