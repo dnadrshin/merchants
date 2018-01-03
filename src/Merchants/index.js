@@ -111,12 +111,12 @@ export default compose(
       // to determine pagination count
       delete: id => dispatch(rest.actions.merchant.delete({id})),
 
-      sync: data => dispatch(rest.actions.merchants.sync({
+      sync: (data, cb) => dispatch(rest.actions.merchants.sync({
         limit  : data.limit,
         start  : data.start,
         order  : data.order,
         orderby: data.column,
-      })),
+      }, null, cb)),
 
       setPagination: (module, limit, start) => dispatch(tableActions
         .setPagination(module, limit, start)),
@@ -128,10 +128,8 @@ export default compose(
   lifecycle({
     componentDidMount() {
       // TODO: Make global settings for per page limit
-      this.props.sync({limit: 3, start: 1});
-
       // Example of async actions with thunk
-      this.props.getMerchants({limit: 3, start: 1});
+      this.props.sync(this.props.pagination, () => this.props.getMerchants(this.props.pagination));
     },
   }),
 )(Merchants);

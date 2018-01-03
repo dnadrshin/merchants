@@ -5,7 +5,7 @@ const
 
   // Immitating fetch waiting
   wainting = (req, res, next) => {
-    setTimeout(next, 1500);
+    setTimeout(next, 700);
   };
 
 router.get('/merchants', wainting, (req, res) => {
